@@ -10,7 +10,7 @@ module.exports = function(potFile, marker, files, cbk) {
 
 	var context = {};
 
-	var regexp =  new RegExp(marker + "\\.tr(?:n)?\\([\"'](.*?)['\"](?:(?:\\s+)?,(?:\\s+)?(?:[\"'](.*?)['\"]))?.*\\)", "g");
+	var regexp =  new RegExp(marker + "\\.tr(?:n)?\\('(.*?)'(?:(?:\\s+)?,(?:\\s+)?(?:'(.*?)'))?.*\\)", "g");
 
 	var readFiles = 0;
 
