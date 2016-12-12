@@ -16,7 +16,7 @@ switch (config["action"]) {
 		i18n.crowdin.download(config["project"], config["apiKey"], config["destFolder"]);
 		break;
 	case "create":
-		i18n.crowdin.add(config["project"], config["apiKey"], config["destFolder"]);
+		i18n.crowdin.add(config["project"], config["apiKey"], config["marker"], config["files"]);
 		break;
 	default:
 		console.error("Missing action params: --action=[upload, download]");
