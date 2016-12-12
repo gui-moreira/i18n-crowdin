@@ -49,6 +49,14 @@ function getDefaultConfig() {
 				config["destFolder"] = i18nConfig["crowdin"]["destFolder"];
 				console.log("Config found: destination folder = " + config["destFolder"]);
 			}
+			if (i18nConfig["crowdin"]["files"]) {
+				config["files"] = i18nConfig["crowdin"]["files"];
+				console.log("Config found: files mask = " + config["files"]);
+			}
+			if (i18nConfig["crowdin"]["marker"]) {
+				config["marker"] = i18nConfig["crowdin"]["marker"];
+				console.log("Config found: marker = " + config["marker"]);
+			}
 		}
 	}
 
