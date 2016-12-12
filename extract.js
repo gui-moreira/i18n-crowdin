@@ -35,7 +35,7 @@ module.exports = function(potFile, marker, files, cbk) {
 				}
 
 				readFiles++;
-				
+
 				// All files read, create POT file
 				if (readFiles == files.length) {
 					if (Object.keys(context).length == 0) {
@@ -45,22 +45,10 @@ module.exports = function(potFile, marker, files, cbk) {
 					// POT header
 					var builder = [];
 
-					builder.push("Project-Id-Version: PACKAGE VERSION");
-					builder.push("Report-Msgid-Bugs-To: ");
-					builder.push("POT-Creation-Date: 2012-04-12 10:02-0300");
-					builder.push("PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE");
-					builder.push("Last-Translator: FULL NAME <EMAIL@ADDRESS>");
-					builder.push("Language-Team: LANGUAGE <LL@li.org>");
-					builder.push("Language: ");
-					builder.push("MIME-Version: 1.0");
-					builder.push("Content-Type: text/plain; charset=UTF-8");
-					builder.push("Content-Transfer-Encoding: 8bit");
-					builder.push("Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n");
-
 					Object.keys(context).forEach(function(k) {
 						context[k].files.forEach(function(v) {
 							builder.push('#: ' + v);
-						});							
+						});
 
 						builder.push('msgid "' + k + '"');
 
