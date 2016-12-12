@@ -57,12 +57,29 @@ module.exports.download = function(projectName, apiKey, destFolder) {
 module.exports.upload = function(projectName, apiKey, marker, files) {
 	var extract = require('./extract');
 	var crowdinApi = require('crowdin-api');
-	
+
 	var potFile = "keys.pot";
 
 	extract(potFile, marker, files, function() {
 		crowdinApi.setKey(apiKey);
-		crowdinApi.updateFile(projectName, [ potFile ]).then(function(uploadResp) {
+		crowdinApi.updateFile(projectName, [ potFile ], {
+      escape_quotes: 0
+    }).then(function(uploadResp) {
+			console.log(uploadResp);
+		});
+	});
+};
+
+module.exports.add = function(projectName, apiKey, marker, files) {
+	var extract = require('./extract');
+	var crowdinApi = require('crowdin-api');
+
+	var potFile = "keys.pot";
+  extract(potFile, marker, files, function() {
+		crowdinApi.setKey(apiKey);
+		crowdinApi.addFile(projectName, [ potFile ], {
+      escape_quotes: 0
+    }).then(function(uploadResp) {
 			console.log(uploadResp);
 		});
 	});
