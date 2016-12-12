@@ -62,9 +62,7 @@ module.exports.upload = function(projectName, apiKey, marker, files) {
 
 	extract(potFile, marker, files, function() {
 		crowdinApi.setKey(apiKey);
-		crowdinApi.updateFile(projectName, [ potFile ], {
-      escape_quotes: 0
-    }).then(function(uploadResp) {
+		crowdinApi.updateFile(projectName, [ potFile ]).then(function(uploadResp) {
 			console.log(uploadResp);
 		});
 	});
@@ -77,9 +75,7 @@ module.exports.add = function(projectName, apiKey, marker, files) {
 	var potFile = "keys.pot";
   extract(potFile, marker, files, function() {
 		crowdinApi.setKey(apiKey);
-		crowdinApi.addFile(projectName, [ potFile ], {
-      escape_quotes: 0
-    }).then(function(uploadResp) {
+		crowdinApi.addFile(projectName, [ potFile ]).then(function(uploadResp) {
 			console.log(uploadResp);
 		});
 	});

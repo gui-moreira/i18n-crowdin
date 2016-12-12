@@ -5,6 +5,7 @@ module.exports = function(text, jsFile) {
 	var translations = {};
 
 	var myArray;
+	text = text.replace(/\\"/g, '"').replace(/\\\\/g,'\\');
 	while ((myArray = singularRegex.exec(text)) !== null) {
 		translations[myArray[1]] = myArray[2];
 	}
