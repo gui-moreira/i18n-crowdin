@@ -15,7 +15,7 @@ module.exports = function(text, jsFile) {
 		translations[myArray[2]] = myArray[4];
 	}
 
-	var content = "const i18nMap = " + JSON.stringify(translations, null, '  ');
+	var content = "const i18nMap = " + JSON.stringify(translations, null, '  ') + ";\nexport { i18nMap as default };";
 
 	require('fs').writeFile(jsFile, content, function(err) {
 		if (err) throw err;
