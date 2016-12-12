@@ -50,10 +50,10 @@ module.exports = function(potFile, marker, files, cbk) {
 							builder.push('#: ' + v);
 						});
 
-						builder.push('msgid "' + k + '"');
+						builder.push('msgid ' + JSON.stringify(k));
 
 						if (context[k].plural) {
-							builder.push('msgid_plural "' + context[k].plural + '"');
+							builder.push('msgid_plural ' + JSON.stringify(context[k].plural));
 							builder.push('msgstr[0] ""');
 							builder.push('msgstr[1] ""\n');
 						} else {
