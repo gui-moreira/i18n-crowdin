@@ -45,6 +45,10 @@ function getDefaultConfig() {
 				config["project"] = i18nConfig["crowdin"]["project"];
 				console.log("Config found: crowdin project = " + config["project"]);
 			}
+			if (i18nConfig["crowdin"]["destFolder"]) {
+				config["destFolder"] = i18nConfig["crowdin"]["destFolder"];
+				console.log("Config found: destination folder = " + config["destFolder"]);
+			}
 		}
 	}
 
