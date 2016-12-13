@@ -9,6 +9,11 @@ console.log("Action to execute = " + config["action"]);
 console.dir(config);
 
 switch (config["action"]) {
+	case "extract":
+		i18n.extract("keys.pot", config["marker"], config["files"], function() {
+			console.log("Keys extracted into keys.pot");
+		});
+		break;
 	case "upload":
 		i18n.crowdin.upload(config["project"], config["apiKey"], config["marker"], config["files"]);
 		break;
