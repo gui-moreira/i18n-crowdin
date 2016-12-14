@@ -9,11 +9,6 @@ console.log("Action to execute = " + config["action"]);
 console.dir(config);
 
 switch (config["action"]) {
-	case "extract":
-		i18n.extract("keys.pot", config["marker"], config["files"], function() {
-			console.log("Keys extracted into keys.pot");
-		});
-		break;
 	case "upload":
 		i18n.crowdin.upload(config["project"], config["apiKey"], config["marker"], config["files"]);
 		break;
@@ -22,6 +17,9 @@ switch (config["action"]) {
 		break;
 	case "create":
 		i18n.crowdin.add(config["project"], config["apiKey"], config["marker"], config["files"]);
+		break;
+	case "extract":
+		i18n.crowdin.extract(config["project"], config["apiKey"], config["marker"], config["files"], config["destFolder"]);
 		break;
 	default:
 		console.error("Missing action params: --action=[upload, download]");

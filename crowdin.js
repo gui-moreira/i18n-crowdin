@@ -54,6 +54,38 @@ module.exports.download = function(projectName, apiKey, destFolder) {
 		});
 };
 
+module.exports.extract = function(projectName, apiKey, marker, files, destFolder) {
+  var extract = require('./extract');
+	var crowdinApi = require('crowdin-api');
+	var https = require('https');
+	var fs = require('fs');
+	var po2json = require('./po2json');
+	extract("keys.pot", marker, files, function() {
+		console.log("Keys extracted into keys.pot");
+		fs.readFile("keys.pot", "utf-8", function read(err, text) {
+			if (err) {
+					throw err;
+			}
+			var req = https.request({
+					hostname: 'api.crowdin.com',
+					port: 443,
+					path: "/api/project/" + projectName + "/info?json=true&key=" + apiKey,
+					method: 'POST'
+				}, function (res) {
+					res.setEncoding('utf8');
+					res.on('data', (d) => {
+						var langs = JSON.parse(d).languages;
+						langs.forEach(function(lang){
+							var fileName = destFolder + "/i18n-" + lang.code + ".js";
+							po2json(text, fileName);
+						})
+					});
+			});
+			req.end();
+		});
+	});
+}
+
 module.exports.upload = function(projectName, apiKey, marker, files) {
 	var extract = require('./extract');
 	var crowdinApi = require('crowdin-api');
@@ -73,7 +105,7 @@ module.exports.add = function(projectName, apiKey, marker, files) {
 	var crowdinApi = require('crowdin-api');
 
 	var potFile = "keys.pot";
-  extract(potFile, marker, files, function() {
+	extract(potFile, marker, files, function() {
 		crowdinApi.setKey(apiKey);
 		crowdinApi.addFile(projectName, [ potFile ]).then(function(uploadResp) {
 			console.log(uploadResp);
